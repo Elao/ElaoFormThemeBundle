@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service class="Elao\Bundle\FormThemeBundle\Form\Extension\FormThemeExtension" id="elao__form_theme.form_extension.form_theme_extension">
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+        </service>
+
+        <service class="Elao\Bundle\FormThemeBundle\Form\TwigRendererDecorator" id="elao.form_theme.form.twig_renderer_decorator" decorates="twig.form.renderer" public="false">
+            <argument type="service" id="elao.form_theme.form.twig_renderer_decorator.inner" />
+        </service>
+
+        <service class="Elao\Bundle\FormThemeBundle\Form\FormFactoryDecorator" id="elao.form_theme.form.form_factory_decorator" decorates="twig.form.renderer" public="false">
+            <argument type="service" id="elao.form_theme.form.form_factory_decorator.inner" />
+            <argument type="service" id="elao.form_theme.form.theme_resolver" />
+        </service>
+
+        <service class="Elao\Bundle\FormThemeBundle\Form\Theme\ThemeResolver" id="elao.form_theme.form.theme_resolver"/>
+
+    </services>
+</container>
