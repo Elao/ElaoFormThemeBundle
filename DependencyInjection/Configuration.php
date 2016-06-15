@@ -22,30 +22,43 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritDoc}
+     *
+     * elao_form_theme
+     *     back:
+     *         themes: ['@Ui/back.html.twig']
+     *         resolvers:
+     *             - type: class
+     *               class: 'Acme\Ui\Bundle\AdminBundle\*'
+     *     front:
+     *         themes: ['@Ui/front.html.twig']
+     *         resolvers:
+     *             - type: request_matcher
+     *               path: '^/.*'
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
         $rootNode    = $treeBuilder->root('elao_form_theme');
 
-        /*
-         elao_form_theme:
-            resolver:
-                foobar:
-                    type: class
-                    rules:
-                        Proximum\Vimeet\Ui\Bundle\AdminBundle\*: "@Ui/layout.html.twig"
-                        Proximum\Vimeet\Ui\Bundle\EventBundle\*: "@Ui/default.html.twig"
-                barfoo:
-                    type: zone
-                    rules:
-                        "^/admin": "@Ui/layout.html.twig"
-                        "^/": "@Ui/default.html.twig"
-                my_resolver:
-                    type: my_resolver
-                    rules: ~
-
-         */
+        $rootNode
+            ->prototype('array')
+                ->children()
+                    ->arrayNode('themes')
+                        ->prototype('scalar')->end()
+                    ->end()
+                    ->arrayNode('resolvers')
+                        ->prototype('array')
+                            ->children()
+                                ->scalarNode('type')->end()
+                                ->scalarNode('path')->end()
+                                ->scalarNode('class')->end()
+                                ->scalarNode('value')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
