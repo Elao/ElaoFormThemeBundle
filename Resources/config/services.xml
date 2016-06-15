@@ -11,7 +11,7 @@
             <argument type="service" id="elao.form_theme.form.twig_renderer_decorator.inner" />
         </service>
 
-        <service class="Elao\Bundle\FormThemeBundle\Form\FormFactoryDecorator" id="elao.form_theme.form.form_factory_decorator" decorates="twig.form.renderer" public="false">
+        <service class="Elao\Bundle\FormThemeBundle\Form\FormFactoryDecorator" id="elao.form_theme.form.form_factory_decorator" decorates="form.factory" public="false">
             <argument type="service" id="elao.form_theme.form.form_factory_decorator.inner" />
             <argument type="service" id="elao.form_theme.form.theme_resolver" />
         </service>
