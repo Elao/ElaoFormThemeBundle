@@ -52,7 +52,7 @@ class TwigRendererDecorator implements TwigRendererInterface
      */
     public function renderBlock(FormView $view, $blockName, array $variables = [])
     {
-        $this->setTheme($view, $view->vars['elao_form_themes']);
+        $this->setThemes($view);
 
         return $this->twigRenderer->renderBlock($view, $blockName, $variables);
     }
@@ -62,7 +62,7 @@ class TwigRendererDecorator implements TwigRendererInterface
      */
     public function searchAndRenderBlock(FormView $view, $blockNameSuffix, array $variables = [])
     {
-        $this->setTheme($view, $view->vars['elao_form_themes']);
+        $this->setThemes($view);
 
         return $this->twigRenderer->searchAndRenderBlock($view, $blockNameSuffix, $variables);
     }
@@ -88,6 +88,16 @@ class TwigRendererDecorator implements TwigRendererInterface
      */
     public function setEnvironment(\Twig_Environment $environment)
     {
-        return $this->twigRenderer->setEnvironment($environment);
+        $this->twigRenderer->setEnvironment($environment);
+    }
+
+    /**
+     * @param FormView $view
+     */
+    protected function setThemes(FormView $view)
+    {
+        if (!empty($view->vars['elao_form_themes'])) {
+            $this->setTheme($view, $view->vars['elao_form_themes']);
+        }
     }
 }

@@ -10,6 +10,8 @@
 
 namespace Elao\Bundle\FormThemeBundle;
 
+use Elao\Bundle\FormThemeBundle\DependencyInjection\Compiler\MatcherPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -17,4 +19,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class ElaoFormThemeBundle extends Bundle
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new MatcherPass());
+    }
 }

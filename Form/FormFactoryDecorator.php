@@ -10,8 +10,8 @@
 
 namespace Elao\Bundle\FormThemeBundle\Form;
 
+use Elao\Bundle\FormThemeBundle\Theme\ThemeResolver;
 use Symfony\Component\Form\FormFactoryInterface;
-use Elao\Bundle\FormThemeBundle\Form\Theme\ThemeResolverInterface;
 
 class FormFactoryDecorator implements FormFactoryInterface
 {
@@ -21,7 +21,7 @@ class FormFactoryDecorator implements FormFactoryInterface
     private $formFactory;
 
     /**
-     * @var ThemeResolverInterface
+     * @var ThemeResolver
      */
     private $themeResolver;
 
@@ -29,9 +29,9 @@ class FormFactoryDecorator implements FormFactoryInterface
      * FormFactoryDecorator constructor.
      *
      * @param FormFactoryInterface   $formFactory
-     * @param ThemeResolverInterface $themeResolver
+     * @param ThemeResolver          $themeResolver
      */
-    public function __construct(FormFactoryInterface $formFactory, ThemeResolverInterface $themeResolver)
+    public function __construct(FormFactoryInterface $formFactory, ThemeResolver $themeResolver)
     {
         $this->formFactory   = $formFactory;
         $this->themeResolver = $themeResolver;
