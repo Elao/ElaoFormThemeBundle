@@ -52,7 +52,7 @@ class ThemeResolver
     public function getMatcher($type)
     {
         if (!isset($this->matchers[$type])) {
-            throw new \Exception(sprintf('Matcher "%s" not found.'));
+            throw new \Exception(sprintf('Matcher "%s" not found.', $type));
         }
 
         return $this->matchers[$type];
@@ -67,7 +67,7 @@ class ThemeResolver
     {
         foreach ($this->zones as $name => $zone) {
             foreach ($zone['matchers'] as $matcher) {
-                if ($this->getMatcher($matcher['type'])->match($matcher['expected'], $type)) {
+                if ($this->getMatcher($matcher['type'])->match($matcher['pattern'], $type)) {
                     return $zone['themes'];
                 }
             }
