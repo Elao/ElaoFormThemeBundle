@@ -52,7 +52,7 @@ class Resolver
     public function getMatcher($type)
     {
         if (!isset($this->matchers[$type])) {
-            throw new \Exception(sprintf('Matcher "%s" not found.'));
+            throw new \Exception(sprintf('Matcher "%s" not found.', $type));
         }
 
         return $this->matchers[$type];
