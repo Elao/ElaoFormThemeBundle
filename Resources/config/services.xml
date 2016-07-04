@@ -13,10 +13,10 @@
 
         <service class="Elao\Bundle\FormThemeBundle\Form\FormFactoryDecorator" id="elao.form_theme.form.form_factory_decorator" decorates="form.factory" public="false">
             <argument type="service" id="elao.form_theme.form.form_factory_decorator.inner" />
-            <argument type="service" id="elao.form_theme.theme_resolver" />
+            <argument type="service" id="elao.form_theme.theme.resolver" />
         </service>
 
-        <service class="Elao\Bundle\FormThemeBundle\Theme\ThemeResolver" id="elao.form_theme.theme_resolver">
+        <service class="Elao\Bundle\FormThemeBundle\Theme\Resolver" id="elao.form_theme.theme.resolver">
             <argument>%elao.form_theme.zones%</argument>
         </service>
 

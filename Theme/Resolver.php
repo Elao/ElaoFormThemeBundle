@@ -12,7 +12,7 @@ namespace Elao\Bundle\FormThemeBundle\Theme;
 
 use Elao\Bundle\FormThemeBundle\Matcher\MatcherInterface;
 
-class ThemeResolver
+class Resolver
 {
     /**
      * @var array
@@ -67,7 +67,7 @@ class ThemeResolver
     {
         foreach ($this->zones as $name => $zone) {
             foreach ($zone['matchers'] as $matcher) {
-                if ($this->getMatcher($matcher['type'])->match($matcher['expected'], $type)) {
+                if ($this->getMatcher($matcher['type'])->match($matcher['pattern'], $type)) {
                     return $zone['themes'];
                 }
             }
